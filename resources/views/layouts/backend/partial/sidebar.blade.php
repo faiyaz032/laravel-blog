@@ -39,6 +39,7 @@
                 @can('myPost', \App\Post::class)
                     <a class="collapse-item" href="{{ route('admin.my.posts') }}">My Posts</a>
                 @endcan
+                <a class="collapse-item" href="{{ route('post.create') }}">Create Post</a>
             </div>
         </div>
     </li>

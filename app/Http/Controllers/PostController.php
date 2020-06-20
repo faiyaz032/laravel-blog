@@ -21,6 +21,11 @@ class PostController extends Controller
         return view('backend.post.myPost', compact('posts'));
     }
 
+    public function create()
+    {
+        return view('backend.post.create');
+    }
+
     public function destroy(Post $post)
     {
         $this->authorize('Can Delete', $post);
