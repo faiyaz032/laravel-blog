@@ -27,4 +27,5 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('admin/post/create', 'PostController@create')->name('post.create');
     Route::delete('admin/post/delete/{post}', 'PostController@destroy')->name('post.destroy');
 
+    Route::resource('admin/categories', 'CategoryController');
 });
