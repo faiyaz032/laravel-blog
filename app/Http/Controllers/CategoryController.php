@@ -26,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('can manage categories', Category::class);
+        return view('backend.category.create');
     }
 
     /**
