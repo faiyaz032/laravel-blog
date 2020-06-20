@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <form action="" method="POST">
+            <form action="{{ route('post.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="formGroupExampleInput">Post Title</label>
@@ -17,7 +17,6 @@
                 </div>
                <div class="">
                    <div class="form-group">
-
                        <label for="category">Category</label>
                        <select class="form-control" name="category" id="category">
                            @foreach($categories as $category)
