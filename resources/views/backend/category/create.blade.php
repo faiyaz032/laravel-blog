@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <form action="" method="POST">
+                <form action="{{ route('categories.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="formGroupExampleInput">Category Name</label>

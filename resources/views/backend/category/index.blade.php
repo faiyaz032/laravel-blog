@@ -24,7 +24,7 @@
                             <tr>
                                 <td>{{ $category->name }}</td>
                                 <td>
-                                    <form action="{{ route('post.destroy', $category->id) }}" method="POST">
+                                    <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

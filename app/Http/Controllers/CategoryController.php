@@ -38,7 +38,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:categories|max:255',
+        ]);
+
+        $category = new Category($request->all());
+        $category->save();
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -83,6 +89,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $this->authorize('can manage categories', Category::class);
+        $category->delete();
+        return redirect()->back();
     }
 }
