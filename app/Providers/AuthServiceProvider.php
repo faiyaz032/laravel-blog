@@ -33,14 +33,5 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
-
-        Gate::define('myPosts', function (User $user){
-            if ($user->isAdmin()){
-                return true;
-            }
-        });
-
-
-
     }
 }

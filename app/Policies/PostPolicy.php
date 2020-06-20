@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Post;
+use App\Role;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -35,9 +36,11 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function myPost()
+    public function myPost(User $user)
     {
-        if (auth()->id() === 1){
+        if ($user->isAdmin()){
+            return true;
+        }elseif ($user->isModerator()){
             return true;
         }
     }

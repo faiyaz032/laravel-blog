@@ -56,9 +56,8 @@ class User extends Authenticatable
 
     public function isModerator()
     {
-        return $this->roles->id === 2;
+        return $this->roles[0]->id === 2;
     }
-
 
     public function assignRole($role)
     {
