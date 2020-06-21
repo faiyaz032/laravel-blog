@@ -24,6 +24,7 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::group(['middleware' => ['auth']], function (){
     Route::get('admin/posts', 'PostController@index')->name('admin.all.posts');
     Route::get('admin/Myposts', 'PostController@myPost')->name('admin.my.posts');
+    Route::get('admin/post/{post}', 'PostController@show')->name('post.show');
     Route::get('admin/post/create', 'PostController@create')->name('post.create');
     Route::post('admin/posts', 'PostController@store')->name('post.store');
     Route::delete('admin/post/delete/{post}', 'PostController@destroy')->name('post.destroy');

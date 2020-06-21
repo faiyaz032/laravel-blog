@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -20,6 +21,11 @@ class PostController extends Controller
         $posts = Post::where('user_id', auth()->id())->get();
         $this->authorize('myPost', Post::class);
         return view('backend.post.myPost', compact('posts'));
+    }
+
+    public function show(Post $post)
+    {
+        return view('backend.post.show', compact('post'));
     }
 
     public function create()
@@ -41,6 +47,7 @@ class PostController extends Controller
         $post->categories()->syncWithoutDetaching(\request('category'));
         return redirect(route('admin.all.posts'));
     }
+
 
     public function destroy(Post $post)
     {

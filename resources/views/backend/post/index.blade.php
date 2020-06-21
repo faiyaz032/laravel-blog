@@ -28,7 +28,10 @@
                                    <td>{{ \Illuminate\Support\Str::limit($post->body, 50) }}</td>
                                    <td>
                                        @can('Can Delete')
-                                           <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                                           <a href="{{ route('post.show',$post->id) }}" class="btn btn-success btn-sm">
+                                               View Post
+                                           </a>
+                                           <form class="d-inline" action="{{ route('post.destroy', $post->id) }}" method="POST">
                                                @csrf
                                                @method('delete')
                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
