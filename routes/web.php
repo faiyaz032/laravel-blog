@@ -36,3 +36,4 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('user/post/{post}/comment', 'CommentController@store')->name('comment.store');
 });
 Route::get('post/{post}', 'PostController@show')->name('post.show');
+Route::get('posts/categories/{category}', 'PostController@postBycategory')->name('postBycategory');

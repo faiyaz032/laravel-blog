@@ -23,6 +23,12 @@ class PostController extends Controller
         return view('backend.post.myPost', compact('posts'));
     }
 
+    public function postByCategory(Category $category)
+    {
+        $posts = $category->posts;
+        return view('posts-by-category', compact('posts'));
+    }
+
     public function show(Post $post)
     {
         $comments = Comment::orderBy('id', 'DESC')->get();
