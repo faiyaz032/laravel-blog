@@ -26,8 +26,11 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('admin/Myposts', 'PostController@myPost')->name('admin.my.posts');
     Route::get('admin/post/create', 'PostController@create')->name('post.create');
     Route::post('admin/posts', 'PostController@store')->name('post.store');
-    Route::get('admin/post/{post}', 'PostController@show')->name('post.show');
+
     Route::delete('admin/post/delete/{post}', 'PostController@destroy')->name('post.destroy');
 
     Route::resource('admin/categories', 'CategoryController');
+
+    Route::post('admin/post/{post}/comment', 'CommentController@store')->name('comment.store');
 });
+Route::get('admin/post/{post}', 'PostController@show')->name('post.show');
