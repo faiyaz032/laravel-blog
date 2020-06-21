@@ -1,5 +1,6 @@
 <?php
 
+use App\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,23 +15,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $posts = Post::orderBy('id', 'desc')->limit(5)->get();
+    return view('welcome', compact('posts'));
 });
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('user/dashboard', 'HomeController@index')->name('dashboard');
 
 Route::group(['middleware' => ['auth']], function (){
-    Route::get('admin/posts', 'PostController@index')->name('admin.all.posts');
-    Route::get('admin/Myposts', 'PostController@myPost')->name('admin.my.posts');
-    Route::get('admin/post/create', 'PostController@create')->name('post.create');
-    Route::post('admin/posts', 'PostController@store')->name('post.store');
+    Route::get('user/posts', 'PostController@index')->name('admin.all.posts');
+    Route::get('user/Myposts', 'PostController@myPost')->name('admin.my.posts');
+    Route::get('user/post/create', 'PostController@create')->name('post.create');
+    Route::post('user/posts', 'PostController@store')->name('post.store');
 
-    Route::delete('admin/post/delete/{post}', 'PostController@destroy')->name('post.destroy');
+    Route::delete('user/post/delete/{post}', 'PostController@destroy')->name('post.destroy');
 
-    Route::resource('admin/categories', 'CategoryController');
+    Route::resource('user/categories', 'CategoryController');
 
-    Route::post('admin/post/{post}/comment', 'CommentController@store')->name('comment.store');
+    Route::post('user/post/{post}/comment', 'CommentController@store')->name('comment.store');
 });
-Route::get('admin/post/{post}', 'PostController@show')->name('post.show');
+Route::get('post/{post}', 'PostController@show')->name('post.show');
