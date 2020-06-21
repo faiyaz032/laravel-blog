@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 @section('content')
-        <h4 class="mt-3">Welcome , {{ auth()->user()->name }}</h4>
+
         <h1 class="my-4">Recents Blogs
 
         </h1>
