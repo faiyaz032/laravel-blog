@@ -12,20 +12,21 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'DESC')->get();
         return view('backend.post.index', compact('posts'));
     }
 
     public function myPost()
     {
-        $posts = Post::where('user_id', auth()->id())->get();
+        $posts = Post::where('user_id', auth()->id())->orderBy('id', 'DESC')->get();
         $this->authorize('myPost', Post::class);
         return view('backend.post.myPost', compact('posts'));
     }
 
     public function show(Post $post)
     {
-        return view('backend.post.show', compact('post'));
+        $comments = Comment::orderBy('id', 'DESC')->get();
+        return view('backend.post.show', compact('post', 'comments'));
     }
 
     public function create()

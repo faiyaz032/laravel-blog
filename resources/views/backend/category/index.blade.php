@@ -12,6 +12,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <td>Action</td>
                     </tr>
@@ -19,8 +20,9 @@
 
                     <tbody>
 
-                    @foreach($categories as $category)
+                    @foreach($categories as $key=>$category)
                             <tr>
+                                <td>{{ $key + 1 }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>
                                     <a href="{{ route('categories.edit',$category->id) }}" class="btn btn-warning btn-sm">

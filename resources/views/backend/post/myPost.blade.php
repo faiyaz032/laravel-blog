@@ -12,30 +12,38 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Title</th>
-                        <th>Posted By</th>
-                        <th>Office</th>
-                        <th>action</th>
+                        <th>Body</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
 
                     <tbody>
 
-                    @foreach($posts as $post)
-                        <tr>
-                            <td>{{ $post->title }}</td>
-                            <td>{{ $post->posted_by }}</td>
-                            <td>{{ $post->body }}</td>
-                            <td>
-                                <form action="{{ route('post.destroy', $post->id) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    @can('Can Delete', \App\Post::class)
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    @foreach($posts as $key=>$post)
+                        @can('viewAny', $post)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $post->title }}</td>
+
+                                <td>{{ \Illuminate\Support\Str::limit($post->body, 50) }}</td>
+                                <td>
+                                    @can('Can Delete')
+                                        <a href="{{ route('post.show',$post->id) }}" class="btn btn-success btn-sm">
+                                            View Post
+                                        </a>
+                                        <form class="d-inline" action="{{ route('post.destroy', $post->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            @can('Can Delete', \App\Post::class)
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            @endcan
+                                        </form>
                                     @endcan
-                                </form>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endcan
                     @endforeach
 
                     </tbody>

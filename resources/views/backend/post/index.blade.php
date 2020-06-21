@@ -12,6 +12,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Title</th>
                         <th>Body</th>
                         <th>Action</th>
@@ -20,9 +21,10 @@
 
                     <tbody>
 
-                       @foreach($posts as $post)
+                       @foreach($posts as $key=>$post)
                            @can('viewAny', $post)
                                <tr>
+                                   <td>{{ $key + 1 }}</td>
                                    <td>{{ $post->title }}</td>
 
                                    <td>{{ \Illuminate\Support\Str::limit($post->body, 50) }}</td>
